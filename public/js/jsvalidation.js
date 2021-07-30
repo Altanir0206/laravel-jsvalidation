@@ -283,7 +283,7 @@ $.extend( $.validator, {
 		groups: {},
 		rules: {},
 		errorClass: "error",
-		pendingClass: "pending",
+		pendingClass: "",
 		validClass: "valid",
 		errorElement: "label",
 		focusCleanup: false,
@@ -2459,6 +2459,8 @@ laravelValidation = {
                 beforeSend: function (xhr) {
                     var token = getCsrfToken(params);
                     if (formMethod(validator) !== 'get' && token) {
+                    	xhr.setRequestHeader('API-KEY', window.api_key);
+                    	xhr.setRequestHeader('Authorization', window.Authorization);
                         return xhr.setRequestHeader('X-XSRF-TOKEN', token);
                     }
                 },
@@ -5945,5 +5947,3 @@ $.extend(true, laravelValidation, {
         },
     }
 });
-
-//# sourceMappingURL=jsvalidation.js.map
